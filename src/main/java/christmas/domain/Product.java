@@ -15,10 +15,22 @@ public class Product {
 
     private void validateProductName(String name) {
         for (EventMenu productName : EventMenu.values()) {
-            if (productName.name().equals(name)){
-                break;
+            if (productName.getName().equals(name)) {
+                return;
             }
         }
         throw new IllegalArgumentException();
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public int getPrice() {
+        return this.price;
+    }
+
+    public String getMenuType() {
+        return this.type;
     }
 }
