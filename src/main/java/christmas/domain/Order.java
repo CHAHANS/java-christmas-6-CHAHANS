@@ -13,7 +13,7 @@ public class Order {
     }
 
     private void validateEA(int EA) {
-        if (EA > 20) {
+        if (EA > 20 || EA < 1) {
             throw new IllegalArgumentException();
         }
     }

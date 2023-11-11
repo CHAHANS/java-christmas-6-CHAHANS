@@ -1,6 +1,7 @@
 package christmas.domain;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Customer {
@@ -22,4 +23,22 @@ public class Customer {
         myOrder.add(new Order(order, EA));
         return true;
     }
+
+    public boolean checkOnlyDrinkOrder() {
+        for (Order nowOrder : myOrder) {
+            if (nowOrder.getOrderMenu().getMenuType() != "음료") {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public List<Order> getMyOrder() {
+        return myOrder;
+    }
+
+    public String getOrderDate() {
+        return orderDate;
+    }
+
 }
