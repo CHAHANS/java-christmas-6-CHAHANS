@@ -22,6 +22,11 @@ public class Product {
         throw new IllegalArgumentException();
     }
 
+    public boolean compareToProduct(String name) {
+        Product compareProduct = new Product(name);
+        return (this.name==compareProduct.getName());
+    }
+
     public String getName() {
         return this.name;
     }
