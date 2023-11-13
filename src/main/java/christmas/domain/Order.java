@@ -7,15 +7,8 @@ public class Order {
 
     Order(String orderedProduct, int EA) {
         this.orderMenu = new Product(orderedProduct);
-        validateEA(EA);
         this.EA = EA;
         this.orderPrice = orderMenu.getPrice() * EA;
-    }
-
-    private void validateEA(int EA) {
-        if (EA > 20 || EA < 1) {
-            throw new IllegalArgumentException();
-        }
     }
 
     public Product getOrderMenu() {

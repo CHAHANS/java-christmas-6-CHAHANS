@@ -14,14 +14,29 @@ public class Customer {
         this.orderDate = validateOrderDate(date);
     }
 
-    public boolean addOrder(String order, int EA) {
+    public void addOrder(String order, int EA) {
+        checkTotalEA(EA);
+        checkCompareProduct(order);
+        myOrder.add(new Order(order, EA));
+    }
+
+    private void checkTotalEA(int EA) {
+        int totalEA = 0;
+        for (Order beforOrder : myOrder) {
+            totalEA += beforOrder.getEA();
+        }
+        totalEA += EA;
+        if (totalEA < 1|| totalEA > 20) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void checkCompareProduct(String order) {
         for (Order beforOrder : myOrder) {
             if (beforOrder.getOrderMenu().compareToProduct(order)) {
-                return false;
+                throw new IllegalArgumentException();
             }
         }
-        myOrder.add(new Order(order, EA));
-        return true;
     }
 
     public boolean checkOnlyDrinkOrder() {
