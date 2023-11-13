@@ -1,0 +1,44 @@
+package christmas.domain.decemberEvent;
+
+import christmas.domain.Customer;
+import static christmas.domain.decemberEvent.Badges.*;
+
+import java.time.LocalDate;
+
+
+public class BadgeEvent extends Events{
+    private String eventName;
+    private final int initBenefits;
+    private final LocalDate startDate;
+    private final LocalDate endDate;
+
+    BadgeEvent() {
+        this.eventName = DecemberEvent.BADGE_EVENT.name();
+        this.initBenefits = DecemberEvent.BADGE_EVENT.getInitBenefit();
+        this.startDate= DecemberEvent.BADGE_EVENT.getStartDate();
+        this.endDate= DecemberEvent.BADGE_EVENT.getEndDate();
+    }
+
+    @Override
+    public boolean conditionChecker(Customer customer) {
+        return false;
+    }
+
+    @Override
+    public int getBenefit(Customer customer) {
+        return 0;
+    }
+
+    public String getBadges(int benefit) {
+        if (benefit>SANTA.getBenefitCondition()) {
+            return SANTA.getKoreanBadgeName();
+        }
+        else if (benefit>TREE.getBenefitCondition()) {
+            return TREE.getKoreanBadgeName();
+        }
+        else if (benefit>STAR.getBenefitCondition()) {
+            return STAR.getKoreanBadgeName();
+        }
+        return "";
+    }
+}
