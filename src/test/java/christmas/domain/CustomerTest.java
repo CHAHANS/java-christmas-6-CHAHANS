@@ -11,7 +11,7 @@ class CustomerTest {
 
     @BeforeEach
     void set() {
-        this.customer = new Customer("2023-12-01");
+        this.customer = new Customer(3);
     }
 
     @DisplayName("이미 있는 메뉴는 주문할 수 없음")

@@ -1,20 +1,20 @@
 package christmas.domain;
 
+import java.time.DateTimeException;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class Customer {
     private final List<Order> myOrder;
-    private final String orderDate;
+    private final LocalDate orderDate;
 
-    public Customer(String date) {
+    public Customer(int date) {
         this.myOrder = new ArrayList<>();
-        this.orderDate = date;
+        this.orderDate = validateOrderDate(date);
     }
 
     public boolean addOrder(String order, int EA) {
-        String beforeOrderName;
         for (Order beforOrder : myOrder) {
             if (beforOrder.getOrderMenu().compareToProduct(order)) {
                 return false;
@@ -33,11 +33,19 @@ public class Customer {
         return true;
     }
 
+    private LocalDate validateOrderDate(int date) {
+        try {
+            return LocalDate.of(2023, 12, date);
+        } catch (DateTimeException e) {
+            throw new IllegalArgumentException();
+        }
+    }
+
     public List<Order> getMyOrder() {
         return myOrder;
     }
 
-    public String getOrderDate() {
+    public LocalDate getOrderDate() {
         return orderDate;
     }
 
