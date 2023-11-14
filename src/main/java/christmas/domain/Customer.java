@@ -39,13 +39,12 @@ public class Customer {
         }
     }
 
-    public boolean checkOnlyDrinkOrder() {
+    public void checkOnlyDrinkOrder() {
         for (Order nowOrder : myOrder) {
-            if (nowOrder.getOrderMenu().getMenuType() != "음료") {
-                return false;
+            if ("음료".equals(nowOrder.getOrderMenu().getMenuType())) {
+                throw new IllegalArgumentException();
             }
         }
-        return true;
     }
 
     private LocalDate validateOrderDate(int date) {
