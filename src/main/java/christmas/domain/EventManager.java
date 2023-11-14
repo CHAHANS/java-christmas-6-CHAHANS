@@ -9,6 +9,7 @@ import java.util.Map;
 
 public class EventManager {
     private List<Events> nowDoingEvent;
+    private BadgeEvent bonusEvent;
 
     public EventManager() {
         this.nowDoingEvent = new ArrayList<>();
@@ -21,7 +22,7 @@ public class EventManager {
         this.nowDoingEvent.add(new WeekEndEvent());
         this.nowDoingEvent.add(new SpecialEvent());
         this.nowDoingEvent.add(new GiftEvent());
-        this.nowDoingEvent.add(new BadgeEvent());
+        this.bonusEvent = new BadgeEvent();
     }
 
     public boolean defaultEventConditionChecker(Customer customer) {
@@ -38,7 +39,12 @@ public class EventManager {
         return approvedEvent;
     }
 
+    public Badges getBonusBadges(Bills bills) {
+        return bonusEvent.getBadges(bills.getTotalBenefit());
+    }
+
     public List<Events> getNowDoingEvent() {
+        nowDoingEvent.add(bonusEvent);
         return nowDoingEvent;
     }
 }
