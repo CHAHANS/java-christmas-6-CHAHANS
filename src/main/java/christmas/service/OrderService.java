@@ -1,6 +1,7 @@
 package christmas.service;
 
 import christmas.domain.Customer;
+import static christmas.messages.ErrorMessages.*;
 import christmas.view.InputView;
 
 import java.util.Arrays;
@@ -21,9 +22,7 @@ public class OrderService {
                 result.checkOnlyDrinkOrder();
                 return result;
             } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
-            } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+                System.out.println(RETRY_INPUT_DATE.getMessage());
             }
         }
     }
@@ -35,7 +34,7 @@ public class OrderService {
                 Customer addedOrderCustomer = iteratorOrderAdd(customer, orderProduct);
                 return customer;
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+                System.out.println(RETRY_INPUT_ORDER.getMessage());
             }
         }
     }

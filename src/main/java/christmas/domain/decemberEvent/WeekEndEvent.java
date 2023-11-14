@@ -1,7 +1,6 @@
 package christmas.domain.decemberEvent;
 
 import christmas.domain.Customer;
-import christmas.domain.EventMenu;
 import christmas.domain.Order;
 
 import java.time.LocalDate;
@@ -41,7 +40,7 @@ public class WeekEndEvent extends Events {
     private int isEqualsProductCount(Customer customer) {
         int countProduct = 0;
         for (Order thisOrder : customer.getMyOrder()) {
-            if (thisOrder.getOrderMenu().getMenuType() == "메인") {
+            if ("메인".equals(thisOrder.getOrderMenu().getMenuType())) {
                 countProduct += thisOrder.getEA();
             }
         }
