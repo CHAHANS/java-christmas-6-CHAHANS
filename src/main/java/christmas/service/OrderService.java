@@ -20,6 +20,8 @@ public class OrderService {
                 Customer result = new Customer(orderDate);
                 result.checkOnlyDrinkOrder();
                 return result;
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
             }

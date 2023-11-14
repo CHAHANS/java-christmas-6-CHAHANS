@@ -20,7 +20,20 @@ public class DecemberEventService {
         } else {
             Bills approvedEventBill = new Bills();
             approvedEventBill.setApprovedEvent(eventManager.allEventChecker(customer));
+            approvedEventBill.setTotalBenefit();
+            approvedEventBill.setBadges();
             return approvedEventBill;
         }
+    }
+
+    public void printBills(Customer customer, Bills bills) {
+        outputView.printSummeryStarter(customer);
+        outputView.printOrderAll(customer);
+        outputView.printPayBeforeBenefit(customer);
+        outputView.printGiveEventProduct(bills);
+        outputView.printBenefitALL(bills);
+        outputView.printTotalBenefitSum(bills);
+        outputView.printPayAfterBenefit(bills,customer);
+        outputView.printDecemberBadge(bills);
     }
 }

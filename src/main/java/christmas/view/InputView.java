@@ -16,11 +16,7 @@ public class InputView {
     }
 
     public int validateNumberInput(String input) {
-        try {
-            return Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
-        }
+        return Integer.parseInt(input);
     }
 
     public String[] validateSplitEachOrder(String input) {

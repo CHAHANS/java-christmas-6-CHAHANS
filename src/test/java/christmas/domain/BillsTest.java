@@ -1,5 +1,6 @@
 package christmas.domain;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -17,8 +18,8 @@ class BillsTest {
                 "평일 할인", 4046,
                 "특별 할인", 1000,
                 "증정 이벤트", 25000));
+        bills.setTotalBenefit();
         assertThat(bills.getTotalBenefit())
                 .isEqualTo(31246);
     }
-
 }
