@@ -8,13 +8,13 @@ import christmas.domain.Product;
 import java.time.LocalDate;
 
 public class GiftEvent extends Events{
-    private String eventName;
+    private final String eventName;
     private final int initBenefits;
     private final LocalDate startDate;
     private final LocalDate endDate;
     private final EventMenu giftProduct;
 
-    GiftEvent() {
+    public GiftEvent() {
         this.eventName = DecemberEvent.GIFT_EVENT.getKoreanName();
         this.initBenefits = DecemberEvent.GIFT_EVENT.getInitBenefit();
         this.startDate = DecemberEvent.GIFT_EVENT.getStartDate();
@@ -24,11 +24,7 @@ public class GiftEvent extends Events{
 
     @Override
     public boolean conditionChecker(Customer customer) {
-        int totalProductPrice = 0;
-        for (Order thisOrder : customer.getMyOrder()) {
-            totalProductPrice += thisOrder.getOrderPrice();
-        }
-        return totalProductPrice >= 120000;
+        return customer.getTotalProductPrice() >= 120000;
     }
 
     @Override
@@ -41,5 +37,9 @@ public class GiftEvent extends Events{
 
     public EventMenu getGiftProduct() {
         return giftProduct;
+    }
+
+    public String getEventName() {
+        return eventName;
     }
 }

@@ -7,13 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SpecialEvent extends Events {
-    private String eventName;
+    private final String eventName;
     private final int initBenefits;
     private final LocalDate startDate;
     private final LocalDate endDate;
     private final List<LocalDate> conditionDay;
 
-    SpecialEvent() {
+    public SpecialEvent() {
         this.eventName = DecemberEvent.SPECIAL_EVENT.getKoreanName();
         this.initBenefits = DecemberEvent.SPECIAL_EVENT.getInitBenefit();
         this.startDate = DecemberEvent.SPECIAL_EVENT.getStartDate();
@@ -46,5 +46,10 @@ public class SpecialEvent extends Events {
             return initBenefits;
         }
         return 0;
+    }
+
+    @Override
+    public String getEventName() {
+        return eventName;
     }
 }

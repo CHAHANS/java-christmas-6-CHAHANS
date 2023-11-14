@@ -6,13 +6,13 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
 public class CrismasDdayEvent extends Events{
-    private String eventName;
+    private final String eventName;
     private final int initBenefits;
     private final LocalDate startDate;
     private final LocalDate endDate;
 
     public CrismasDdayEvent() {
-        this.eventName = DecemberEvent.D_DAY_EVENT.name();
+        this.eventName = DecemberEvent.D_DAY_EVENT.getKoreanName();
         this.initBenefits = DecemberEvent.D_DAY_EVENT.getInitBenefit();
         this.startDate= DecemberEvent.D_DAY_EVENT.getStartDate();
         this.endDate= DecemberEvent.D_DAY_EVENT.getEndDate();
@@ -32,5 +32,9 @@ public class CrismasDdayEvent extends Events{
             return initBenefits + (100 * bonusDay);
         }
         return 0;
+    }
+
+    public String getEventName() {
+        return eventName;
     }
 }

@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 
 public class BadgeEvent extends Events{
-    private String eventName;
+    private final String eventName;
     private final int initBenefits;
     private final LocalDate startDate;
     private final LocalDate endDate;
@@ -40,5 +40,9 @@ public class BadgeEvent extends Events{
             return STAR;
         }
         return null;
+    }
+
+    public String getEventName() {
+        return eventName;
     }
 }

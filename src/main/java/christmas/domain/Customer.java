@@ -55,6 +55,14 @@ public class Customer {
         }
     }
 
+    public int getTotalProductPrice() {
+        int totalProductPrice = 0;
+        for (Order thisOrder : myOrder) {
+            totalProductPrice += thisOrder.getOrderPrice();
+        }
+        return totalProductPrice;
+    }
+
     public List<Order> getMyOrder() {
         return myOrder;
     }

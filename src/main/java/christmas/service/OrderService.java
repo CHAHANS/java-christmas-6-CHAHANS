@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 
 public class OrderService {
-    static InputView inputView;
+    private InputView inputView;
 
     public OrderService() {
         this.inputView = new InputView();

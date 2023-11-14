@@ -7,12 +7,12 @@ import christmas.domain.Order;
 import java.time.LocalDate;
 
 public class WeekEndEvent extends Events {
-    private String eventName;
+    private final String eventName;
     private final int initBenefits;
     private final LocalDate startDate;
     private final LocalDate endDate;
 
-    WeekEndEvent() {
+    public WeekEndEvent() {
         this.eventName = DecemberEvent.WEEKEND_EVENT.getKoreanName();
         this.initBenefits = DecemberEvent.WEEKEND_EVENT.getInitBenefit();
         this.startDate = DecemberEvent.WEEKEND_EVENT.getStartDate();
@@ -46,5 +46,9 @@ public class WeekEndEvent extends Events {
             }
         }
         return countProduct;
+    }
+
+    public String getEventName() {
+        return eventName;
     }
 }
