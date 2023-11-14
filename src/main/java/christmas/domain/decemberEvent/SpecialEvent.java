@@ -30,15 +30,21 @@ public class SpecialEvent extends Events {
 
     @Override
     public boolean conditionChecker(Customer customer) {
-        boolean eventChecker = false;
+        boolean conditionState = false;
         for (LocalDate eventDay : conditionDay) {
-            eventChecker = eventDay.isEqual(customer.getOrderDate());
+            if (eventDay.getDayOfMonth()
+                    == customer.getOrderDate().getDayOfMonth()) {
+                conditionState = true;
+            }
         }
-        return eventChecker;
+        return conditionState;
     }
 
     @Override
     public int getBenefit(Customer customer) {
-        return initBenefits;
+        if (conditionChecker(customer)) {
+            return initBenefits;
+        }
+        return 0;
     }
 }

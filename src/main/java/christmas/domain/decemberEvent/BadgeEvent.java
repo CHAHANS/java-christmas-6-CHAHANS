@@ -12,7 +12,7 @@ public class BadgeEvent extends Events{
     private final LocalDate startDate;
     private final LocalDate endDate;
 
-    BadgeEvent() {
+    public BadgeEvent() {
         this.eventName = DecemberEvent.BADGE_EVENT.name();
         this.initBenefits = DecemberEvent.BADGE_EVENT.getInitBenefit();
         this.startDate= DecemberEvent.BADGE_EVENT.getStartDate();
@@ -29,16 +29,16 @@ public class BadgeEvent extends Events{
         return 0;
     }
 
-    public String getBadges(int benefit) {
-        if (benefit>SANTA.getBenefitCondition()) {
-            return SANTA.getKoreanBadgeName();
+    public Badges getBadges(int benefit) {
+        if (benefit>=SANTA.getBenefitCondition()) {
+            return SANTA;
         }
-        else if (benefit>TREE.getBenefitCondition()) {
-            return TREE.getKoreanBadgeName();
+        else if (benefit>=TREE.getBenefitCondition()) {
+            return TREE;
         }
-        else if (benefit>STAR.getBenefitCondition()) {
-            return STAR.getKoreanBadgeName();
+        else if (benefit>=STAR.getBenefitCondition()) {
+            return STAR;
         }
-        return "";
+        return null;
     }
 }

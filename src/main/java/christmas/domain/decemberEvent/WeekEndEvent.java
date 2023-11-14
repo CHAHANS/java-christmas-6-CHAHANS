@@ -1,6 +1,7 @@
 package christmas.domain.decemberEvent;
 
 import christmas.domain.Customer;
+import christmas.domain.EventMenu;
 import christmas.domain.Order;
 
 import java.time.LocalDate;
@@ -20,18 +21,30 @@ public class WeekEndEvent extends Events {
 
     @Override
     public boolean conditionChecker(Customer customer) {
-        int dayValue = customer.getOrderDate().getDayOfWeek().getValue();
-        return 5 < dayValue && dayValue <= 7;
+        return dayConditionChecker(customer) && (isEqualsProductCount(customer) != 0);
+
     }
 
     @Override
     public int getBenefit(Customer customer) {
-        int countDesertProduct = 0;
+        if (conditionChecker(customer)) {
+            return initBenefits * isEqualsProductCount(customer);
+        }
+        return 0;
+    }
+
+    private boolean dayConditionChecker(Customer customer) {
+        int dayValue = customer.getOrderDate().getDayOfWeek().getValue();
+        return 5 < dayValue && dayValue <= 7;
+    }
+
+    private int isEqualsProductCount(Customer customer) {
+        int countProduct = 0;
         for (Order thisOrder : customer.getMyOrder()) {
-            if (thisOrder.getOrderMenu().getMenuType()=="메인") {
-                countDesertProduct++;
+            if (thisOrder.getOrderMenu().getMenuType() == "메인") {
+                countProduct += thisOrder.getEA();
             }
         }
-        return initBenefits*countDesertProduct;
+        return countProduct;
     }
 }

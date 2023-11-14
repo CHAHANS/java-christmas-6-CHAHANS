@@ -20,18 +20,29 @@ public class WeekDayEvent extends Events {
 
     @Override
     public boolean conditionChecker(Customer customer) {
-        int dayValue = customer.getOrderDate().getDayOfWeek().getValue();
-        return 0 < dayValue && dayValue <= 5;
+        return dayConditionChecker(customer) && (isEqualsProductCount(customer) != 0);
     }
 
     @Override
     public int getBenefit(Customer customer) {
-        int countDesertProduct = 0;
+        if (conditionChecker(customer)) {
+            return initBenefits * isEqualsProductCount(customer);
+        }
+        return 0;
+    }
+
+    private boolean dayConditionChecker(Customer customer) {
+        int dayValue = customer.getOrderDate().getDayOfWeek().getValue();
+        return 0 < dayValue && dayValue <= 5;
+    }
+
+    private int isEqualsProductCount(Customer customer) {
+        int countProduct = 0;
         for (Order thisOrder : customer.getMyOrder()) {
-            if (thisOrder.getOrderMenu().getMenuType()=="디저트") {
-                countDesertProduct++;
+            if ("디저트".equals(thisOrder.getOrderMenu().getMenuType())) {
+                countProduct += thisOrder.getEA();
             }
         }
-        return initBenefits*countDesertProduct;
+        return countProduct;
     }
 }

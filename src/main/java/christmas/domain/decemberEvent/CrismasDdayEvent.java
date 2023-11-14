@@ -11,7 +11,7 @@ public class CrismasDdayEvent extends Events{
     private final LocalDate startDate;
     private final LocalDate endDate;
 
-    CrismasDdayEvent() {
+    public CrismasDdayEvent() {
         this.eventName = DecemberEvent.D_DAY_EVENT.name();
         this.initBenefits = DecemberEvent.D_DAY_EVENT.getInitBenefit();
         this.startDate= DecemberEvent.D_DAY_EVENT.getStartDate();
