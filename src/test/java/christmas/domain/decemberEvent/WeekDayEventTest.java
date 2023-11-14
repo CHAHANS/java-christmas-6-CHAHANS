@@ -17,18 +17,18 @@ class WeekDayEventTest {
         this.weekDayEvent = new WeekDayEvent();
     }
 
-    @DisplayName("평일이면서, 디저트가 있어야만 true")
+    @DisplayName("일 ~ 목 이면서, 디저트가 있어야만 true")
     @ParameterizedTest
-    @ValueSource(ints = {15, 28, 25})
+    @ValueSource(ints = {3, 4, 24, 25})
     void weekDayEventConditionCheckerTrueTest(int date) {
         Customer newCustomer = new Customer(date);
         newCustomer.addOrder("초코케이크", 1);
         assertThat(weekDayEvent.conditionChecker(newCustomer)).isTrue();
     }
 
-    @DisplayName("평일이 아니면 false")
+    @DisplayName("일 ~ 목 가 아니면 false")
     @ParameterizedTest
-    @ValueSource(ints = {16, 23, 24})
+    @ValueSource(ints = {1, 2, 8, 9})
     void weekDayEventConditionCheckerFalseTest(int date) {
         Customer newCustomer = new Customer(date);
         newCustomer.addOrder("초코케이크", 1);
@@ -38,7 +38,7 @@ class WeekDayEventTest {
     @DisplayName("주문상품이 없는 경우 혜택금액 0")
     @Test
     void weekDayEventGetBenefitNullProductTest() {
-        Customer newCustomer = new Customer(25);
+        Customer newCustomer = new Customer(3);
         assertThat(newCustomer.getMyOrder().isEmpty()).isTrue();
         assertThat(weekDayEvent.getBenefit(newCustomer))
                 .isEqualTo(0);
@@ -47,7 +47,7 @@ class WeekDayEventTest {
     @DisplayName("디저트메뉴 1개당 2023원씩 혜택금액 출력")
     @Test
     void weekDayEventGetBenefitTrueTest() {
-        Customer newCustomer = new Customer(25);
+        Customer newCustomer = new Customer(3);
         newCustomer.addOrder("초코케이크", 1);
         newCustomer.addOrder("아이스크림", 2);
         assertThat(weekDayEvent.getBenefit(newCustomer))
@@ -57,7 +57,7 @@ class WeekDayEventTest {
     @DisplayName("디저트메뉴 없는경우 0 출력")
     @Test
     void weekDayEventGetBenefitFalseTest() {
-        Customer newCustomer = new Customer(25);
+        Customer newCustomer = new Customer(3);
         newCustomer.addOrder("타파스", 1);
         newCustomer.addOrder("바비큐립", 2);
         assertThat(weekDayEvent.getBenefit(newCustomer))

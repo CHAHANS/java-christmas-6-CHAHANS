@@ -33,7 +33,7 @@ public class WeekDayEvent extends Events {
 
     private boolean dayConditionChecker(Customer customer) {
         int dayValue = customer.getOrderDate().getDayOfWeek().getValue();
-        return 0 < dayValue && dayValue <= 5;
+        return (0 < dayValue && dayValue <= 4) || dayValue == 7;
     }
 
     private int isEqualsProductCount(Customer customer) {
