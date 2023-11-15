@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 
 public class OrderService {
-    private InputView inputView;
+    private final InputView inputView;
 
     public OrderService() {
         this.inputView = new InputView();
@@ -22,6 +22,10 @@ public class OrderService {
                 result.checkOnlyDrinkOrder();
                 return result;
             } catch (NumberFormatException e) {
+                System.out.println(FAIL_PARSE_INTEGER.getMessage());
+                System.out.println(RETRY_INPUT_DATE.getMessage());
+            } catch (IllegalArgumentException e) {
+                System.out.println(FAIL_VALID_DATE.getMessage());
                 System.out.println(RETRY_INPUT_DATE.getMessage());
             }
         }
@@ -32,7 +36,7 @@ public class OrderService {
             try {
                 String orderProduct = inputView.readOrder();
                 Customer addedOrderCustomer = iteratorOrderAdd(customer, orderProduct);
-                return customer;
+                return addedOrderCustomer;
             } catch (IllegalArgumentException e) {
                 System.out.println(RETRY_INPUT_ORDER.getMessage());
             }
