@@ -6,8 +6,8 @@ import christmas.domain.EventManager;
 import christmas.view.OutputView;
 
 public class DecemberEventService {
-    private EventManager eventManager;
-    private OutputView outputView;
+    private final EventManager eventManager;
+    private final OutputView outputView;
 
     public DecemberEventService() {
         this.eventManager = new EventManager();
