@@ -2,8 +2,6 @@ package christmas.domain.decemberEvent;
 
 import christmas.domain.Customer;
 import christmas.domain.EventMenu;
-import christmas.domain.Order;
-import christmas.domain.Product;
 
 import java.time.LocalDate;
 

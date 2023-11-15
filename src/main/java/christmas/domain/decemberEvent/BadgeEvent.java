@@ -5,7 +5,6 @@ import static christmas.domain.decemberEvent.Badges.*;
 
 import java.time.LocalDate;
 
-
 public class BadgeEvent extends Events{
     private final String eventName;
     private final int initBenefits;

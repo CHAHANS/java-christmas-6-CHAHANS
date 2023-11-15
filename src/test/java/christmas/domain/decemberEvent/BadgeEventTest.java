@@ -15,11 +15,11 @@ class BadgeEventTest {
         this.badgeEvent = new BadgeEvent();
     }
 
-    @DisplayName("이벤트 기간인 테스트")
+    @DisplayName("뱃지는 별도처리로 항상 false를 유지한다.")
     @Test
     void eventCheckerBadgeEventTrue() {
         Customer newCustomer = new Customer(1);
-        assertThat(badgeEvent.conditionChecker(newCustomer)).isTrue();
+        assertThat(badgeEvent.conditionChecker(newCustomer)).isFalse();
     }
 
     @DisplayName("혜택금액에 따른 badges 리턴 경계값 테스트")
