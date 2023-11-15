@@ -2,6 +2,7 @@ package christmas.domain;
 
 import christmas.domain.decemberEvent.BadgeEvent;
 import christmas.domain.decemberEvent.Badges;
+import christmas.domain.decemberEvent.DecemberEvent;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -34,6 +35,14 @@ public class Bills {
     public void setBadges() {
         BadgeEvent badgeEvent = new BadgeEvent();
         this.badges = badgeEvent.getBadges(totalBenefit);
+    }
+
+    public int getSaleBenefit() {
+        Integer productBenefit = approvedEvent.get(DecemberEvent.GIFT_EVENT.getKoreanName());
+        if (productBenefit == null) {
+            productBenefit = 0;
+        }
+        return totalBenefit - productBenefit;
     }
 
     public int getTotalBenefit() {

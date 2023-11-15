@@ -2,6 +2,7 @@ package christmas.view;
 
 import christmas.domain.Bills;
 import christmas.domain.Customer;
+import christmas.domain.EventMenu;
 import christmas.domain.Order;
 import christmas.domain.decemberEvent.DecemberEvent;
 
@@ -34,11 +35,11 @@ public class OutputView {
 
     public void printGiveEventProduct(Bills bills) {
         System.out.printf(GIFT_EVENT_PRODUCT_TITLE.getMessage());
-        String giftProduct = DecemberEvent.GIFT_EVENT.getKoreanName();
-        if (bills.getApprovedEvent().get(giftProduct) == null) {
+        Integer giftBenefit = bills.getApprovedEvent().get(DecemberEvent.GIFT_EVENT.getKoreanName());
+        if (giftBenefit == null) {
             System.out.printf(NOTTING.getMessage());
         } else {
-            System.out.printf(PRINT_PRODUCT_EA_FORMAT.getMessage(), giftProduct, 1);
+            System.out.printf(PRINT_PRODUCT_EA_FORMAT.getMessage(), EventMenu.샴페인.getName(), 1);
         }
         System.out.println();
     }
@@ -71,7 +72,7 @@ public class OutputView {
 
     public void printPayAfterBenefit(Bills bills, Customer customer) {
         System.out.printf(PAY_AFTER_BENEFIT_TITLE.getMessage());
-        int payValue = customer.getTotalProductPrice() - bills.getTotalBenefit();
+        int payValue = customer.getTotalProductPrice() - bills.getSaleBenefit();
         System.out.printf(PRINT_PRICE_KRW_FORMAT.getMessage(), payValue);
         System.out.println();
     }
