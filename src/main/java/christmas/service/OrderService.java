@@ -18,9 +18,7 @@ public class OrderService {
         while (true) {
             try {
                 int orderDate = inputView.readDate();
-                Customer result = new Customer(orderDate);
-                result.checkOnlyDrinkOrder();
-                return result;
+                return new Customer(orderDate);
             } catch (NumberFormatException e) {
                 System.out.println(FAIL_PARSE_INTEGER.getMessage());
                 System.out.println(RETRY_INPUT_DATE.getMessage());
@@ -35,8 +33,7 @@ public class OrderService {
         while (true) {
             try {
                 String orderProduct = inputView.readOrder();
-                Customer addedOrderCustomer = iteratorOrderAdd(customer, orderProduct);
-                return addedOrderCustomer;
+                return iteratorOrderAdd(customer, orderProduct);
             } catch (IllegalArgumentException e) {
                 System.out.println(RETRY_INPUT_ORDER.getMessage());
             }
@@ -51,6 +48,7 @@ public class OrderService {
             int nowOrderEA = inputView.validateNumberInput(nowOrder[1]);
             customer.addOrder(nowOrderProduct, nowOrderEA);
         }
+        customer.checkOnlyDrinkOrder();
         return customer;
     }
 }

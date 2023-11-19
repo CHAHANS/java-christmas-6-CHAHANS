@@ -26,7 +26,7 @@ public class Customer {
             totalEA += beforOrder.getEA();
         }
         totalEA += EA;
-        if (totalEA < 1|| totalEA > 20) {
+        if (totalEA < 1 || totalEA > 20) {
             throw new IllegalArgumentException();
         }
     }
@@ -40,10 +40,15 @@ public class Customer {
     }
 
     public void checkOnlyDrinkOrder() {
+        int size = myOrder.size();
+        int count = 0;
         for (Order nowOrder : myOrder) {
             if ("음료".equals(nowOrder.getOrderMenu().getMenuType())) {
-                throw new IllegalArgumentException();
+                count++;
             }
+        }
+        if (size == count) {
+            throw new IllegalArgumentException();
         }
     }
 
